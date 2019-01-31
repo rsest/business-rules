@@ -1,7 +1,7 @@
 from business_rules.actions import BaseActions, rule_action
+from business_rules.engine import run_all, get_value, InvalidRuleDefinition
 from business_rules.fields import FIELD_TEXT
 from business_rules.variables import BaseVariables, boolean_rule_variable
-from business_rules.engine import run_all, get_value, InvalidRuleDefinition
 from . import TestCase
 
 

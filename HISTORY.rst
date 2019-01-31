@@ -3,9 +3,16 @@ History
 
 1.0.13
 ++++++
+released 2019-1-31
+
+- DateTime type
+
+1.0.12
+++++++
 released 2018-3-31
-Currently business rules library allows to execute actions only.
-This PR adds ability to create rules for returning values.
+
+- Currently business rules library allows to execute actions only.
+
 
 1.0.11
 ++++++

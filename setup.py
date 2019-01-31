@@ -10,25 +10,17 @@ with open('HISTORY.rst') as f:
 description = 'Python DSL for setting up business intelligence rules that can be configured without code; based on Venmo/business-rules.'
 
 setuptools.setup(
-        name='business-rules-extra',
+        name='business-rules-engine',
         version=version,
         description='{0}'.format(description),
-        author='Anna Winkler',
-        author_email='me.anna.winkler@gmail.com',
-        url='https://github.com/annawinkler/business-rules',
+        author='Rodrigo Sestari',
+        url='https://github.com/rodrigosestari/business-rules',
         packages=['business_rules'],
         license='MIT',
         classifiers=[
             'Intended Audience :: Developers',
             'License :: OSI Approved :: BSD License',
             'Operating System :: OS Independent',
-            'Programming Language :: Python',
-            'Programming Language :: Python :: 2',
-            'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 3.2',
-            'Programming Language :: Python :: 3.3',
-            'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6',
         ],
 )

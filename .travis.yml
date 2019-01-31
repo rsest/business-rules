@@ -2,7 +2,6 @@ language: python
 python:
     - "3.6"
 install:
-    - if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then pip install unittest2; fi
-    - "pip install -e ."
+    - pip install -r dev-requirements.txt
 script:
     - "nosetests tests"

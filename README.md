@@ -1,7 +1,7 @@
 Rules Engine
 ==============
 
-[![Build Status](https://travis-ci.org/venmo/business-rules.svg?branch=master)](https://travis-ci.org/venmo/business-rules)
+[![Build Status](https://travis-ci.org/rodrigosestari/business-rules.svg?branch=master)](https://travis-ci.org/rodrigosestari/business-rules)
 
 
 As a software system grows in complexity and usage, it can become burdensome if

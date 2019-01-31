@@ -1,5 +1,6 @@
-from .fields import FIELD_NO_INPUT
 import logging
+
+from .fields import FIELD_NO_INPUT
 
 LOG = logging.getLogger(__name__)
 
@@ -115,9 +116,11 @@ def _get_variable_value(defined_variables, name):
     specified type.
     Returns an instance of operators.BaseType
     """
+
     def fallback(*args, **kwargs):
         raise AssertionError("Variable {0} is not defined in class {1}".format(
-                name, defined_variables.__class__.__name__))
+            name, defined_variables.__class__.__name__))
+
     method = getattr(defined_variables, name, fallback)
     val = method()
     return method.field_type(val)
@@ -130,9 +133,11 @@ def _do_operator_comparison(operator_type, operator_name, comparison_value):
     comparison_value is whatever python type to compare to
     returns a bool
     """
+
     def fallback(*args, **kwargs):
         raise AssertionError("Operator {0} does not exist for type {1}".format(
             operator_name, operator_type.__class__.__name__))
+
     method = getattr(operator_type, operator_name, fallback)
     if getattr(method, 'input_type', '') == FIELD_NO_INPUT:
         return method()
@@ -158,7 +163,7 @@ def do_actions(actions, defined_actions):
         def fallback(*args, **kwargs):
             raise AssertionError(
                 "Action {0} is not defined in class {1}".format(method_name,
-                    defined_actions.__class__.__name__))
+                                                                defined_actions.__class__.__name__))
 
         params = action.get('params') or {}
         method = getattr(defined_actions, method_name, fallback)

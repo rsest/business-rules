@@ -1,10 +1,11 @@
 from business_rules.operators import (StringType,
                                       NumericType, BooleanType, SelectType,
-                                      SelectMultipleType)
+                                      SelectMultipleType, DateTimeType)
 
 from . import TestCase
 from decimal import Decimal
 import sys
+
 
 class StringOperatorTests(TestCase):
 
@@ -61,8 +62,8 @@ class NumericOperatorTests(TestCase):
         if sys.version_info[0] == 2:
             ten_long = long(10)
         else:
-            ten_long = int(10) # long and int are same in python3
-        ten_var_dec = NumericType(ten_dec) # this should not throw an exception
+            ten_long = int(10)  # long and int are same in python3
+        ten_var_dec = NumericType(ten_dec)  # this should not throw an exception
         ten_var_int = NumericType(ten_int)
         ten_var_float = NumericType(ten_float)
         ten_var_long = NumericType(ten_long)
@@ -190,3 +191,37 @@ class SelectMultipleOperatorTests(TestCase):
                          shares_no_elements_with([2, 3]))
         self.assertFalse(SelectMultipleType([1, 2, "a"]).
                          shares_no_elements_with([4, "A"]))
+
+
+class DateTimeOperatorTests(TestCase):
+
+    def test_equal_to(self):
+        self.assertTrue(DateTimeType("2018-06-12-16:30:16.770").equal_to("2018-06-12-16:30:16.770"))
+        self.assertTrue(DateTimeType("2018-06-13").equal_to("2018-06-13"))
+        self.assertFalse(DateTimeType("2018-06-13").equal_to("2018-07-13"))
+
+    def test_not_equal_to(self):
+        self.assertTrue(DateTimeType("2018-06-12-16:30:16.770").not_equal_to("2018-06-12-16:31:16.770"))
+        self.assertTrue(DateTimeType("2018-06-13").not_equal_to("2018-07-13"))
+        self.assertFalse(DateTimeType("2018-06-13").equal_to("2010-06-13"))
+
+    def test_greater_than(self):
+        self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").greater_than("2018-06-12-16:31:16.770"))
+        self.assertTrue(DateTimeType("2018-06-15").greater_than("2018-06-13"))
+        self.assertFalse(DateTimeType("2018-06-13").greater_than("2018-06-19"))
+
+    def test_less_than(self):
+        self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").less_than("2020-06-12-16:31:16.770"))
+        self.assertFalse(DateTimeType("2018-06-15").less_than("2009-07-13"))
+        self.assertTrue(DateTimeType("2018-06-13").less_than("2020-06-19"))
+
+
+    def test_greater_equal_than(self):
+        self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").greater_equal_than("2019-06-12-16:30:16.770"))
+        self.assertTrue(DateTimeType("2018-06-15").greater_equal_than("2018-06-13"))
+        self.assertFalse(DateTimeType("2018-06-13").greater_equal_than("2018-06-19"))
+
+    def test_less_equal_than(self):
+        self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").less_equal_than("2019-06-12-16:30:16.770"))
+        self.assertFalse(DateTimeType("2018-06-15").less_equal_than("2009-07-13"))
+        self.assertTrue(DateTimeType("2018-06-13").less_equal_than("2020-06-19"))

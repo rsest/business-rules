@@ -1,7 +1,7 @@
 business-rules
 ==============
 
-[![Build Status](https://travis-ci.org/venmo/business-rules.svg?branch=master)](https://travis-ci.org/venmo/business-rules)
+[[![build-status-image]][travis]
 
 As a software system grows in complexity and usage, it can become burdensome if
 every change to the logic/behavior of the system also requires you to write and
@@ -218,6 +218,23 @@ for product in Products.objects.all():
             stop_on_first_trigger=True
            )
 ```
+
+### Get value returned by action
+
+```python
+ from business_rules import get_value
+
+ rules = _some_function_to_receive_from_client()
+
+ product = Products.objects.first()
+ get_value(rule_list=rules,
+         defined_variables=ProductVariables(product),
+         defined_actions=ProductActions(product),
+        )
+```
+
+  In business_rules.actions you can find ReturnNumericActions and ReturnTextActions.
+
 
 ## API
 

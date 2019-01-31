@@ -1,4 +1,4 @@
-business-rules
+Rules Engine
 ==============
 
 [![Build Status](https://travis-ci.org/venmo/business-rules.svg?branch=master)](https://travis-ci.org/venmo/business-rules)

@@ -293,6 +293,20 @@ Note: to compare floating point equality we just check that the difference is le
 * `shares_exactly_one_element_with`
 * `shares_no_elements_with`
 
+
+**datatime** - a datetime value operations, parser based on ```dateutil.parser.parse```
+
+`@datatime_rule_variable` operators:
+
+* `equal_to`
+* `not_equal_to`
+* `greater_than`
+* `less_than`
+* `greater_equal_than`
+* `less_equal_than`
+
+
+
 ### Returning data to your client
 
 

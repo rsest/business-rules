@@ -296,10 +296,10 @@ class StringListType(BaseType):
         return value
 
     @type_operator(FIELD_TEXT)
-    def contains_all(self, other_string):
-        return len(list(filter(lambda y: y is True, list(map(lambda x: x in other_string, self.value))))) == len(
-            self.value)
+    def contains_all(self, list_string):
+        return len(list(filter(lambda y: y is True, list(map(lambda x: x in self.value, list_string))))) == len(
+            list_string)
 
     @type_operator(FIELD_TEXT)
-    def contains_at_least_one_element(self, other_string):
-        return len(list(filter(lambda y: y is True, list(map(lambda x: x in other_string, self.value))))) > 0
+    def contains_at_least_one_element(self, list_string):
+        return len(list(filter(lambda y: y is True, list(map(lambda x: x in self.value, list_string))))) > 0

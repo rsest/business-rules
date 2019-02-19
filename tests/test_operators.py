@@ -226,17 +226,17 @@ class DateTimeOperatorTests(TestCase):
 class StringListOperatorTests(TestCase):
 
     def test_contains_all(self):
-        self.assertTrue(StringListType(["1", "2"]).
-                        contains_all("1 2 5"))
-        self.assertFalse(StringListType(["1", "2"]).
-                         contains_all("4"))
-        self.assertTrue(StringListType(["a", "b"]).
-                        contains_all("a ret bd b"))
+        self.assertTrue(StringListType("1 2 5").
+                        contains_all(["1", "2"]))
+        self.assertFalse(StringListType("4").
+                         contains_all(["1", "2"]))
+        self.assertTrue(StringListType("a ret bd b").
+                        contains_all(["a", "b"]))
 
     def test_contains_at_least_one_element(self):
-        self.assertTrue(StringListType(["1", "2"]).
-                        contains_at_least_one_element("334 2 534"))
-        self.assertFalse(StringListType(["1", "2"]).
-                         contains_at_least_one_element("4"))
-        self.assertTrue(StringListType(["a", "b"]).
-                        contains_at_least_one_element("a ret bd b"))
+        self.assertTrue(StringListType("334 2 534").
+                        contains_at_least_one_element(["1", "2"]))
+        self.assertFalse(StringListType("4").
+                         contains_at_least_one_element(["1", "2"]))
+        self.assertTrue(StringListType("a ret bd b").
+                        contains_at_least_one_element(["a", "b"]))

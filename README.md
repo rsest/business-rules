@@ -148,60 +148,6 @@ rules = [
 }]
 ```
 
-### Export the available variables, operators and actions
-
-To e.g. send to your client so it knows how to build rules
-
-```python
-from business_rules import export_rule_data
-export_rule_data(ProductVariables, ProductActions)
-```
-
-that returns
-
-```python
-{"variables": [
-    { "name": "expiration_days",
-      "label": "Days until expiration",
-      "field_type": "numeric",
-      "options": []},
-    { "name": "current_month",
-      "label": "Current Month",
-      "field_type": "string",
-      "options": []},
-    { "name": "goes_well_with",
-      "label": "Goes Well With",
-      "field_type": "select",
-      "options": ["Eggnog", "Cookies", "Beef Jerkey"]}
-                ],
-  "actions": [
-    { "name": "put_on_sale",
-      "label": "Put On Sale",
-      "params": {"sale_percentage": "numeric"}},
-    { "name": "order_more",
-      "label": "Order More",
-      "params": {"number_to_order": "numeric"}}
-  ],
-  "variable_type_operators": {
-    "numeric": [ {"name": "equal_to",
-                  "label": "Equal To",
-                  "input_type": "numeric"},
-                 {"name": "less_than",
-                  "label": "Less Than",
-                  "input_type": "numeric"},
-                 {"name": "greater_than",
-                  "label": "Greater Than",
-                  "input_type": "numeric"}],
-    "string": [ { "name": "equal_to",
-                  "label": "Equal To",
-                  "input_type": "text"},
-                { "name": "non_empty",
-                  "label": "Non Empty",
-                  "input_type": "none"}]
-  }
-}
-```
-
 ### Run your rules
 
 ```python
@@ -304,6 +250,15 @@ Note: to compare floating point equality we just check that the difference is le
 * `less_than`
 * `greater_equal_than`
 * `less_equal_than`
+
+
+**string_list** - a List[string] value operations in a single string
+
+`@string_list_rule_variable` operators:
+
+* `contains_all`
+* `contains_at_least_one_element`
+
 
 
 

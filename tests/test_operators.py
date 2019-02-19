@@ -1,10 +1,9 @@
+from decimal import Decimal
+
 from business_rules.operators import (StringType,
                                       NumericType, BooleanType, SelectType,
-                                      SelectMultipleType, DateTimeType)
-
+                                      SelectMultipleType, DateTimeType, StringListType)
 from . import TestCase
-from decimal import Decimal
-import sys
 
 
 class StringOperatorTests(TestCase):
@@ -213,7 +212,6 @@ class DateTimeOperatorTests(TestCase):
         self.assertFalse(DateTimeType("2018-06-15").less_than("2009-07-13"))
         self.assertTrue(DateTimeType("2018-06-13").less_than("2020-06-19"))
 
-
     def test_greater_equal_than(self):
         self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").greater_equal_than("2019-06-12-16:30:16.770"))
         self.assertTrue(DateTimeType("2018-06-15").greater_equal_than("2018-06-13"))
@@ -223,3 +221,22 @@ class DateTimeOperatorTests(TestCase):
         self.assertTrue(DateTimeType("2019-06-12-16:30:16.770").less_equal_than("2019-06-12-16:30:16.770"))
         self.assertFalse(DateTimeType("2018-06-15").less_equal_than("2009-07-13"))
         self.assertTrue(DateTimeType("2018-06-13").less_equal_than("2020-06-19"))
+
+
+class StringListOperatorTests(TestCase):
+
+    def test_contains_all(self):
+        self.assertTrue(StringListType(["1", "2"]).
+                        contains_all("1 2 5"))
+        self.assertFalse(StringListType(["1", "2"]).
+                         contains_all("4"))
+        self.assertTrue(StringListType(["a", "b"]).
+                        contains_all("a ret bd b"))
+
+    def test_contains_at_least_one_element(self):
+        self.assertTrue(StringListType(["1", "2"]).
+                        contains_at_least_one_element("334 2 534"))
+        self.assertFalse(StringListType(["1", "2"]).
+                         contains_at_least_one_element("4"))
+        self.assertTrue(StringListType(["a", "b"]).
+                        contains_at_least_one_element("a ret bd b"))

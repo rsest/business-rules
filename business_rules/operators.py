@@ -283,3 +283,23 @@ class SelectMultipleType(BaseType):
     @type_operator(FIELD_SELECT_MULTIPLE)
     def shares_no_elements_with(self, other_value):
         return not self.shares_at_least_one_element_with(other_value)
+
+
+@export_type
+class StringListType(BaseType):
+    name = "string_list"
+
+    def _assert_valid_value_and_cast(self, value):
+        if not hasattr(value, '__iter__'):
+            raise AssertionError("{0} is not a valid interator type.".
+                                 format(value))
+        return value
+
+    @type_operator(FIELD_TEXT)
+    def contains_all(self, other_string):
+        return len(list(filter(lambda y: y is True, list(map(lambda x: x in other_string, self.value))))) == len(
+            self.value)
+
+    @type_operator(FIELD_TEXT)
+    def contains_at_least_one_element(self, other_string):
+        return len(list(filter(lambda y: y is True, list(map(lambda x: x in other_string, self.value))))) > 0

@@ -1,6 +1,12 @@
 History
 -------
 
+1.0.14
+++++++
+released 2019-2-19
+
+- StringList type
+
 1.0.13
 ++++++
 released 2019-1-31
@@ -11,7 +17,7 @@ released 2019-1-31
 ++++++
 released 2018-3-31
 
-- Currently business rules library allows to execute actions only.
+- ability to create rules for returning values
 
 
 1.0.11

@@ -257,7 +257,7 @@ Note: to compare floating point equality we just check that the difference is le
 `@string_list_rule_variable` operators:
 
 * `contains_all`
-* `test_contains_at_least_one_element`
+* `contains_at_least_one_element`
 
 
 

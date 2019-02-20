@@ -295,6 +295,15 @@ class StringListType(BaseType):
                                  format(value))
         return value
 
+    def __contains(self, list_string):
+        if len(list_string) > 0:
+            if list_string[0] in self.value:
+                return True
+            else:
+                return self.__contains(list_string[1:])
+        else:
+            return False
+
     @type_operator(FIELD_TEXT)
     def contains_all(self, list_string):
         return len(list(filter(lambda y: y is True, list(map(lambda x: x in self.value, list_string))))) == len(
@@ -302,4 +311,4 @@ class StringListType(BaseType):
 
     @type_operator(FIELD_TEXT)
     def contains_at_least_one_element(self, list_string):
-        return len(list(filter(lambda y: y is True, list(map(lambda x: x in self.value, list_string))))) > 0
+        return self.__contains(list_string)

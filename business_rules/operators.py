@@ -312,3 +312,32 @@ class StringListType(BaseType):
     @type_operator(FIELD_TEXT)
     def contains_at_least_one_element(self, list_string):
         return self.__contains(list_string)
+
+
+@export_type
+class NumericListType(BaseType):
+    name = "numeric_list"
+
+    def _assert_valid_value_and_cast(self, value):
+        if not hasattr(value, '__iter__'):
+            raise AssertionError("{0} is not a valid interator type.".
+                                 format(value))
+        return value
+
+    def __contains(self, list_numeric):
+        if len(list_numeric) > 0:
+            if list_numeric[0] in self.value:
+                return True
+            else:
+                return self.__contains(list_numeric[1:])
+        else:
+            return False
+
+    @type_operator(FIELD_NUMERIC)
+    def contains_all(self, list_numeric):
+        return len(list(filter(lambda y: y is True, list(map(lambda x: x in self.value, list_numeric))))) == len(
+            list_numeric)
+
+    @type_operator(FIELD_NUMERIC)
+    def contains_at_least_one_element(self, list_numeric):
+        return self.__contains(list_numeric)

@@ -1,5 +1,11 @@
 History
 -------
+1.0.15
+++++++
+released 2019-8-30
+
+- NumericList type
+
 
 1.0.14
 ++++++

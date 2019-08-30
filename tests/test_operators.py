@@ -2,7 +2,7 @@ from decimal import Decimal
 
 from business_rules.operators import (StringType,
                                       NumericType, BooleanType, SelectType,
-                                      SelectMultipleType, DateTimeType, StringListType)
+                                      SelectMultipleType, DateTimeType, StringListType, NumericListType)
 from . import TestCase
 
 
@@ -240,3 +240,22 @@ class StringListOperatorTests(TestCase):
                          contains_at_least_one_element(["1", "2"]))
         self.assertTrue(StringListType("a ret bd b").
                         contains_at_least_one_element(["a", "b"]))
+
+
+class NumericListOperatorTests(TestCase):
+
+    def test_contains_all(self):
+        self.assertTrue(NumericListType([1, 2, 5]).
+                        contains_all([1, 2]))
+        self.assertFalse(NumericListType([4]).
+                         contains_all([1, 2]))
+        self.assertTrue(NumericListType([1, 2, 4, 5]).
+                        contains_all([1, 5]))
+
+    def test_contains_at_least_one_element(self):
+        self.assertTrue(NumericListType([11, 22]).
+                        contains_at_least_one_element([11, 22]))
+        self.assertFalse(NumericListType([4]).
+                         contains_at_least_one_element([1, 2]))
+        self.assertTrue(NumericListType([1, 2, 3, 4]).
+                        contains_at_least_one_element([1, 4]))

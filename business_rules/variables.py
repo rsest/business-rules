@@ -7,7 +7,8 @@ from .operators import (BaseType,
                         SelectType,
                         SelectMultipleType,
                         DateTimeType,
-                        StringListType)
+                        StringListType,
+                        NumericListType)
 from .utils import fn_name_to_pretty_label
 
 
@@ -78,3 +79,7 @@ def select_multiple_rule_variable(label=None, options=None):
 
 def string_list_rule_variable(label=None, options=None):
     return rule_variable(StringListType, label=label, options=options)
+
+
+def numeric_list_rule_variable(label=None, options=None):
+    return rule_variable(NumericListType, label=label, options=options)

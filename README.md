@@ -260,7 +260,12 @@ Note: to compare floating point equality we just check that the difference is le
 * `contains_at_least_one_element`
 
 
+**numeric_list** - a List[string] value operations in a single number
 
+`@numeric_list_rule_variable` operators:
+
+* `contains_all`
+* `contains_at_least_one_element`
 
 ### Returning data to your client
 

@@ -1,5 +1,11 @@
 History
 -------
+1.0.16
+++++++
+released 2020-11-04
+
+- Update libs
+
 1.0.15
 ++++++
 released 2019-8-30
